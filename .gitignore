@@ -1,0 +1,29 @@
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+frontend/.env.local
+
+# Frontend dependencies and builds
+frontend/node_modules/
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+
+# Python cache
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local data and logs
+*.db
+*.sqlite
+*.sqlite3
+logs/
+*.log
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db

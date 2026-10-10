@@ -1,0 +1,242 @@
+[
+  {
+    "id": "HO_SC001",
+    "category": "upi_collect_request",
+    "label": "scam",
+    "message": "A payment request of ₹18,750 is waiting in your UPI app. Approve it to receive your refund."
+  },
+  {
+    "id": "HO_SC002",
+    "category": "remote_access_fraud",
+    "label": "scam",
+    "message": "I am from bank technical support. Install this screen-sharing app and keep it open while I fix your account."
+  },
+  {
+    "id": "HO_SC003",
+    "category": "job_scam",
+    "label": "scam",
+    "message": "Earn ₹4,000 daily by rating products from home. Pay a refundable onboarding deposit of ₹1,499 to activate your worker ID."
+  },
+  {
+    "id": "HO_SC004",
+    "category": "investment_scam",
+    "label": "scam",
+    "message": "Our private trading group guarantees to double your capital in 10 days. Transfer funds today to secure your slot."
+  },
+  {
+    "id": "HO_SC005",
+    "category": "account_impersonation",
+    "label": "scam",
+    "message": "Your bank profile has been placed on hold. Send your card number, expiry date and OTP here so we can restore access."
+  },
+  {
+    "id": "HO_SC006",
+    "category": "parcel_fee_scam",
+    "label": "scam",
+    "message": "Delivery attempt failed because your address record is incomplete. Pay a ₹22 verification charge using this link to release the parcel: http://parcel-address-check.example/"
+  },
+  {
+    "id": "HO_SC007",
+    "category": "fake_prize",
+    "label": "scam",
+    "message": "Congratulations! Your mobile number won our customer draw. To claim ₹75,000, first pay the processing tax through this QR code."
+  },
+  {
+    "id": "HO_SC008",
+    "category": "government_impersonation",
+    "label": "scam",
+    "message": "Final notice from the subsidy department: your benefit will be cancelled unless you submit your Aadhaar and bank details through this form today."
+  },
+  {
+    "id": "HO_SC009",
+    "category": "marketplace_scam",
+    "label": "scam",
+    "message": "I will buy your laptop immediately. Send me your UPI ID and scan the collect request I send; the money will arrive once you approve."
+  },
+  {
+    "id": "HO_SC010",
+    "category": "account_takeover",
+    "label": "scam",
+    "message": "We detected a login from another city. Reply with the six-digit code just sent to your phone so we can block the intruder."
+  },
+  {
+    "id": "HO_SC011",
+    "category": "fake_refund",
+    "label": "scam",
+    "message": "Your electricity bill was charged twice. Open the attached refund form and enter your internet banking password to receive the excess amount."
+  },
+  {
+    "id": "HO_SC012",
+    "category": "romance_financial_scam",
+    "label": "scam",
+    "message": "I need you to receive a transfer for me. Send ₹2,000 first to unlock the international remittance and I will repay you tomorrow."
+  },
+  {
+    "id": "HO_SC013",
+    "category": "fake_support",
+    "label": "scam",
+    "message": "Your complaint is eligible for priority resolution. Call this number and share the OTP from your banking SMS to verify ownership."
+  },
+  {
+    "id": "HO_SC014",
+    "category": "business_email_compromise",
+    "label": "scam",
+    "message": "The director has approved an urgent vendor payment. Use these new bank details and keep the transfer confidential until I confirm."
+  },
+  {
+    "id": "HO_SC015",
+    "category": "crypto_scam",
+    "label": "scam",
+    "message": "Your crypto wallet is eligible for an airdrop. Connect it on this claim page and enter your recovery phrase to validate the reward."
+  },
+  {
+    "id": "HO_SC016",
+    "category": "fake_loan",
+    "label": "scam",
+    "message": "Pre-approved loan of ₹3 lakh with no paperwork. Pay ₹899 as insurance first; disbursal happens immediately after the fee."
+  },
+  {
+    "id": "HO_SC017",
+    "category": "social_engineering",
+    "label": "scam",
+    "message": "Don't call your family or the bank because this investigation is confidential. Move your savings to the safe account below now."
+  },
+  {
+    "id": "HO_SC018",
+    "category": "credential_phishing",
+    "label": "scam",
+    "message": "Your email storage will be disabled tonight. Sign in at http://mailbox-renewal.example.net/restore to keep receiving messages."
+  },
+  {
+    "id": "HO_SC019",
+    "category": "fake_charity",
+    "label": "scam",
+    "message": "A child urgently needs surgery. Donate through this personal UPI number and send a screenshot plus your full name and card details for the receipt."
+  },
+  {
+    "id": "HO_SC020",
+    "category": "fake_recruitment",
+    "label": "scam",
+    "message": "You are selected for a government data-entry role without an exam. Pay ₹2,300 for document verification to receive your appointment letter."
+  },
+  {
+    "id": "HO_LG001",
+    "category": "security_advice",
+    "label": "legitimate",
+    "message": "Never share your OTP, UPI PIN or banking password with anyone, even if they claim to be from customer support."
+  },
+  {
+    "id": "HO_LG002",
+    "category": "delivery_notice",
+    "label": "legitimate",
+    "message": "Your parcel is scheduled for delivery tomorrow between 2 PM and 5 PM. No payment is required."
+  },
+  {
+    "id": "HO_LG003",
+    "category": "bank_notice",
+    "label": "legitimate",
+    "message": "Your monthly account statement is ready in the official banking app. We will never ask you to send your password by message."
+  },
+  {
+    "id": "HO_LG004",
+    "category": "job_notice",
+    "label": "legitimate",
+    "message": "Applications for the library assistant position close on Friday. Submit your resume through the careers page listed on our official website."
+  },
+  {
+    "id": "HO_LG005",
+    "category": "investment_education",
+    "label": "legitimate",
+    "message": "Reminder for tomorrow's financial literacy session: learn how to spot guaranteed-return claims and verify investment advisers before investing."
+  },
+  {
+    "id": "HO_LG006",
+    "category": "upi_payment",
+    "label": "legitimate",
+    "message": "Your UPI payment of ₹640 to Green Basket was successful. Transaction reference: 829104. If you did not make this payment, contact your bank through its official app."
+  },
+  {
+    "id": "HO_LG007",
+    "category": "government_information",
+    "label": "legitimate",
+    "message": "The municipal office will hold an open help desk for subsidy applications on Tuesday. Bring documents only if required by the published checklist."
+  },
+  {
+    "id": "HO_LG008",
+    "category": "parcel_update",
+    "label": "legitimate",
+    "message": "We could not deliver your package today. We will make another attempt tomorrow. You can check the status in the courier app; there is no fee to reschedule."
+  },
+  {
+    "id": "HO_LG009",
+    "category": "workplace_payment",
+    "label": "legitimate",
+    "message": "Please review the vendor invoice in the company finance portal. Follow the usual approval process and verify any change in bank details independently."
+  },
+  {
+    "id": "HO_LG010",
+    "category": "account_security",
+    "label": "legitimate",
+    "message": "A sign-in was detected on your account. If this was you, no action is needed. If not, open the app directly and review your security settings."
+  },
+  {
+    "id": "HO_LG011",
+    "category": "school_notice",
+    "label": "legitimate",
+    "message": "The school fee deadline is 15 October. Payments can be made through the parent portal or at the school office; staff will not request your OTP."
+  },
+  {
+    "id": "HO_LG012",
+    "category": "refund_notice",
+    "label": "legitimate",
+    "message": "Your return has been accepted. The refund will be sent to the original payment method within five to seven working days. No additional fee is needed."
+  },
+  {
+    "id": "HO_LG013",
+    "category": "anti_scam_campaign",
+    "label": "legitimate",
+    "message": "Awareness tip: scammers may ask you to approve a UPI collect request to receive money. Decline unexpected requests and verify with the sender."
+  },
+  {
+    "id": "HO_LG014",
+    "category": "telecom_notice",
+    "label": "legitimate",
+    "message": "Your data pack expires tomorrow. To renew it, open your telecom provider's app yourself or visit a store. Do not share account passwords with callers."
+  },
+  {
+    "id": "HO_LG015",
+    "category": "appointment_notice",
+    "label": "legitimate",
+    "message": "This is a reminder of your dental appointment on 18 October at 11:30 AM. Reply C to confirm or call the clinic's published number to reschedule."
+  },
+  {
+    "id": "HO_LG016",
+    "category": "charity_notice",
+    "label": "legitimate",
+    "message": "Our community food drive is collecting sealed, non-perishable items at the community centre this weekend. Donations are optional; no payment link is being sent."
+  },
+  {
+    "id": "HO_LG017",
+    "category": "delivery_fee_policy",
+    "label": "legitimate",
+    "message": "Our courier policy: delivery rescheduling is free. If anyone requests a small fee by message, do not pay; check your order in the official app."
+  },
+  {
+    "id": "HO_LG018",
+    "category": "investment_notice",
+    "label": "legitimate",
+    "message": "Market values can rise or fall, and returns are not guaranteed. Read the scheme documents and consider your risk tolerance before investing."
+  },
+  {
+    "id": "HO_LG019",
+    "category": "password_reset",
+    "label": "legitimate",
+    "message": "You requested a password reset. If this was you, continue from the app or website you opened yourself. If not, ignore this message and secure your account."
+  },
+  {
+    "id": "HO_LG020",
+    "category": "customer_support",
+    "label": "legitimate",
+    "message": "Your support ticket has been created. An agent will reply in the app. Our team will not ask for your UPI PIN, OTP, or remote access."
+  }
+]

@@ -1,0 +1,606 @@
+
+[
+  {
+    "id": "SC001",
+    "category": "otp_phishing",
+    "label": "scam",
+    "message": "Your bank account will be blocked in 2 hours. Verify your account and share your OTP at http://192.168.1.50/verify"
+  },
+  {
+    "id": "SC002",
+    "category": "account_impersonation",
+    "label": "scam",
+    "message": "Your SBI KYC has expired. Update immediately at https://sbi-login-verify.example.com/kyc to avoid account suspension."
+  },
+  {
+    "id": "SC003",
+    "category": "fake_prize",
+    "label": "scam",
+    "message": "Congratulations! You have won a cash prize of Rs 50000. Pay a processing fee now to claim your reward."
+  },
+  {
+    "id": "SC004",
+    "category": "delivery_scam",
+    "label": "scam",
+    "message": "Your parcel is on hold due to an incomplete address. Pay Rs 25 immediately using this link to receive delivery."
+  },
+  {
+    "id": "SC005",
+    "category": "investment_scam",
+    "label": "scam",
+    "message": "Invest Rs 5000 today and receive guaranteed returns of 300 percent in seven days. Limited slots available."
+  },
+  {
+    "id": "SC006",
+    "category": "job_scam",
+    "label": "scam",
+    "message": "You are selected for a work from home job earning Rs 8000 daily. Pay a refundable registration fee to start."
+  },
+  {
+    "id": "SC007",
+    "category": "fake_refund",
+    "label": "scam",
+    "message": "Your refund is pending. Enter your banking password, card details and OTP to receive your money."
+  },
+  {
+    "id": "SC008",
+    "category": "account_threat",
+    "label": "scam",
+    "message": "FINAL WARNING: Your account will be permanently suspended today unless you verify your password immediately."
+  },
+  {
+    "id": "SC009",
+    "category": "impersonation",
+    "label": "scam",
+    "message": "This is customer support. Your account has suspicious activity. Send your OTP here so we can secure it."
+  },
+  {
+    "id": "SC010",
+    "category": "payment_scam",
+    "label": "scam",
+    "message": "Your UPI payment failed. To reverse the transaction, scan this unknown QR code and enter your UPI PIN."
+  },
+  {
+    "id": "LG001",
+    "category": "bank_notification",
+    "label": "legitimate",
+    "message": "Your bank account was debited by Rs 450 on your recent purchase. If you did not make this transaction, contact your bank through its official app."
+  },
+  {
+    "id": "LG002",
+    "category": "payment_confirmation",
+    "label": "legitimate",
+    "message": "Payment of Rs 850 received successfully. Thank you for your purchase."
+  },
+  {
+    "id": "LG003",
+    "category": "security_advice",
+    "label": "legitimate",
+    "message": "Never share your OTP, password or UPI PIN with anyone. Banks will not ask you to disclose these secrets over a call or message."
+  },
+  {
+    "id": "LG004",
+    "category": "delivery_update",
+    "label": "legitimate",
+    "message": "Your order has been shipped and is expected to arrive tomorrow. Track your order through the official shopping app."
+  },
+  {
+    "id": "LG005",
+    "category": "routine_bank_message",
+    "label": "legitimate",
+    "message": "Your monthly account statement is available in your bank's official mobile application."
+  },
+  {
+    "id": "LG006",
+    "category": "payment_reminder",
+    "label": "legitimate",
+    "message": "Reminder: Your electricity bill payment of Rs 1200 is due on the 15th of this month."
+  },
+  {
+    "id": "LG007",
+    "category": "security_alert",
+    "label": "legitimate",
+    "message": "A new login was detected on your account. If this was not you, open the official app and change your password."
+  },
+  {
+    "id": "LG008",
+    "category": "ordinary_message",
+    "label": "legitimate",
+    "message": "Hi, are we still meeting at 5 pm today? Let me know if you need to change the time."
+  },
+  {
+    "id": "LG009",
+    "category": "bank_information",
+    "label": "legitimate",
+    "message": "Our bank offers savings accounts, fixed deposits and mobile banking services. Visit a branch for more information."
+  },
+  {
+    "id": "LG010",
+    "category": "scam_warning",
+    "label": "legitimate",
+    "message": "Warning: Fraudsters may send fake KYC links. Do not click unknown links or disclose your OTP. Verify requests independently."
+  },
+  {
+    
+  
+    "id": "SC011",
+    "category": "credential_phishing",
+    "label": "scam",
+    "message": "Your bank account will be restricted today. Enter your password and OTP to restore access."
+  },
+  {
+    "id": "SC012",
+    "category": "upi_scam",
+    "label": "scam",
+    "message": "To receive your pending refund, scan this QR code and enter your UPI PIN."
+  },
+  {
+    "id": "SC013",
+    "category": "delivery_scam",
+    "label": "scam",
+    "message": "Your package could not be delivered. Pay Rs 35 to reschedule delivery today."
+  },
+  {
+    "id": "SC014",
+    "category": "job_scam",
+    "label": "scam",
+    "message": "Earn Rs 12000 daily from home. Pay a refundable registration fee to activate your job."
+  },
+  {
+    "id": "SC015",
+    "category": "investment_scam",
+    "label": "scam",
+    "message": "Invest today for guaranteed returns of 40% every week with zero risk."
+  },
+  {
+    "id": "SC016",
+    "category": "prize_scam",
+    "label": "scam",
+    "message": "Congratulations! You won a smartphone. Pay a processing fee to claim your prize."
+  },
+  {
+    "id": "SC017",
+    "category": "account_threat",
+    "label": "scam",
+    "message": "FINAL NOTICE: Your account will be permanently suspended unless you verify your password immediately."
+  },
+  {
+    "id": "SC018",
+    "category": "financial_scam",
+    "label": "scam",
+    "message": "Transfer Rs 8500 now to unlock your pending payment."
+  },
+  {
+    "id": "SC019",
+    "category": "upi_scam",
+    "label": "scam",
+    "message": "Your buyer has sent money. Enter your UPI PIN to accept the payment."
+  },
+  {
+    "id": "SC020",
+    "category": "credential_phishing",
+    "label": "scam",
+    "message": "Your KYC has expired. Submit your banking credentials through this message to avoid account closure."
+  },
+  {
+    "id": "SC021",
+    "category": "delivery_scam",
+    "label": "scam",
+    "message": "Your parcel is held at the warehouse. Pay Rs 20 immediately to release it."
+  },
+  {
+    "id": "SC022",
+    "category": "job_scam",
+    "label": "scam",
+    "message": "You have been selected for an online job. Pay a joining fee before your offer expires."
+  },
+  {
+    "id": "SC023",
+    "category": "investment_scam",
+    "label": "scam",
+    "message": "Double your money in seven days with our guaranteed investment plan."
+  },
+  {
+    "id": "SC024",
+    "category": "prize_scam",
+    "label": "scam",
+    "message": "You have won a lottery reward. Send your bank details to release the winnings."
+  },
+  {
+    "id": "SC025",
+    "category": "account_threat",
+    "label": "scam",
+    "message": "Your card will be blocked today. Verify your account details immediately to prevent suspension."
+  },
+  {
+    "id": "SC026",
+    "category": "financial_scam",
+    "label": "scam",
+    "message": "Pay a refundable activation fee to unlock your cash reward."
+  },
+  {
+    "id": "SC027",
+    "category": "credential_phishing",
+    "label": "scam",
+    "message": "We detected suspicious activity. Reply with your password and passcode to secure your account."
+  },
+  {
+    "id": "SC028",
+    "category": "upi_scam",
+    "label": "scam",
+    "message": "To reverse your failed UPI transaction, scan this unknown QR code and provide your PIN."
+  },
+  {
+    "id": "SC029",
+    "category": "delivery_scam",
+    "label": "scam",
+    "message": "Your delivery address is incomplete. Pay Rs 25 now to receive your parcel."
+  },
+  {
+    "id": "SC030",
+    "category": "investment_scam",
+    "label": "scam",
+    "message": "Earn 25% profit daily by investing through our risk-free trading scheme."
+  },
+  {
+    "id": "SC031",
+    "category": "job_scam",
+    "label": "scam",
+    "message": "Remote data entry job available. Pay a processing fee to receive your work assignment."
+  },
+  {
+    "id": "SC032",
+    "category": "prize_scam",
+    "label": "scam",
+    "message": "You are today's cash prize winner. Pay a small fee to claim your reward."
+  },
+  {
+    "id": "SC033",
+    "category": "account_threat",
+    "label": "scam",
+    "message": "Your banking service will be terminated unless you confirm your account immediately."
+  },
+  {
+    "id": "SC034",
+    "category": "credential_phishing",
+    "label": "scam",
+    "message": "Enter your OTP to continue and unlock your blocked account."
+  },
+  {
+    "id": "SC035",
+    "category": "financial_scam",
+    "label": "scam",
+    "message": "Send Rs 5000 as an advance fee to receive your promised grant."
+  },
+  {
+    "id": "SC036",
+    "category": "upi_scam",
+    "label": "scam",
+    "message": "The payment will reach you after you enter your UPI PIN on the next screen."
+  },
+  {
+    "id": "SC037",
+    "category": "delivery_scam",
+    "label": "scam",
+    "message": "Your package is pending because of an address issue. Pay a small fee to complete delivery."
+  },
+  {
+    "id": "SC038",
+    "category": "job_scam",
+    "label": "scam",
+    "message": "Earn Rs 9000 per day by liking videos. Pay a registration fee to start earning."
+  },
+  {
+    "id": "SC039",
+    "category": "investment_scam",
+    "label": "scam",
+    "message": "Our platform guarantees 300 percent returns with no possibility of loss."
+  },
+  {
+    "id": "SC040",
+    "category": "credential_phishing",
+    "label": "scam",
+    "message": "Confirm your bank login details and CVV immediately to prevent your account from being blocked."
+  },
+  {
+    "id": "SC041",
+    "category": "account_threat",
+    "label": "scam",
+    "message": "FINAL WARNING: Verify your password today or your account will be permanently suspended."
+  },
+  {
+    "id": "SC042",
+    "category": "prize_scam",
+    "label": "scam",
+    "message": "You have won a gift voucher. Pay the release fee to receive your reward."
+  },
+  {
+    "id": "SC043",
+    "category": "financial_scam",
+    "label": "scam",
+    "message": "Transfer funds immediately to avoid a penalty on your account."
+  },
+  {
+    "id": "SC044",
+    "category": "upi_scam",
+    "label": "scam",
+    "message": "Scan this QR code to receive your refund and enter your UPI PIN when prompted."
+  },
+  {
+    "id": "SC045",
+    "category": "delivery_scam",
+    "label": "scam",
+    "message": "The courier could not find your address. Pay Rs 40 now to release your package."
+  },
+  {
+    "id": "SC046",
+    "category": "job_scam",
+    "label": "scam",
+    "message": "You are selected for an online job paying Rs 15000 daily. Pay a joining fee to confirm."
+  },
+  {
+    "id": "SC047",
+    "category": "investment_scam",
+    "label": "scam",
+    "message": "Invest now and double your money in one week with guaranteed profit."
+  },
+  {
+    "id": "SC048",
+    "category": "credential_phishing",
+    "label": "scam",
+    "message": "Your identity verification failed. Submit your password and OTP to restore access."
+  },
+  {
+    "id": "SC049",
+    "category": "account_threat",
+    "label": "scam",
+    "message": "Your account may be closed today unless you verify your credentials immediately."
+  },
+  {
+    "id": "SC050",
+    "category": "financial_scam",
+    "label": "scam",
+    "message": "Pay the verification fee now to release your pending cashback."
+  },
+  {
+    "id": "LG011",
+    "category": "security_advice",
+    "label": "legitimate",
+    "message": "Never share your OTP or password with anyone, even someone claiming to be from your bank."
+  },
+  {
+    "id": "LG012",
+    "category": "delivery_update",
+    "label": "legitimate",
+    "message": "Your parcel is on its way and should arrive tomorrow. Check tracking in the official courier app."
+  },
+  {
+    "id": "LG013",
+    "category": "bill_reminder",
+    "label": "legitimate",
+    "message": "Reminder: Your electricity bill of Rs 1200 is due next week. Pay through the official provider website."
+  },
+  {
+    "id": "LG014",
+    "category": "payment_confirmation",
+    "label": "legitimate",
+    "message": "Your payment of Rs 650 was received successfully. Your order is confirmed."
+  },
+  {
+    "id": "LG015",
+    "category": "bank_security",
+    "label": "legitimate",
+    "message": "For your security, our bank will never ask you to reveal your PIN or password by phone or message."
+  },
+  {
+    "id": "LG016",
+    "category": "account_notification",
+    "label": "legitimate",
+    "message": "Your monthly account statement is ready. Open the official mobile banking app to view it."
+  },
+  {
+    "id": "LG017",
+    "category": "job_information",
+    "label": "legitimate",
+    "message": "Our company is accepting applications for a remote data entry position. Apply through the careers page on our official website."
+  },
+  {
+    "id": "LG018",
+    "category": "investment_education",
+    "label": "legitimate",
+    "message": "Investments carry risk, and returns are not guaranteed. Compare fees and read the product documents before investing."
+  },
+  {
+    "id": "LG019",
+    "category": "prize_notice",
+    "label": "legitimate",
+    "message": "The school prize distribution ceremony will take place on Friday. Students should check the notice board for details."
+  },
+  {
+    "id": "LG020",
+    "category": "account_security",
+    "label": "legitimate",
+    "message": "We detected a new login. If it was not you, open the official app directly and review your account security."
+  },
+  {
+    "id": "LG021",
+    "category": "delivery_payment",
+    "label": "legitimate",
+    "message": "Your order summary includes a delivery fee of Rs 40. Review the total in the shopping app before checkout."
+  },
+  {
+    "id": "LG022",
+    "category": "bank_transfer",
+    "label": "legitimate",
+    "message": "Your scheduled transfer of Rs 2000 has been completed. Review your transaction history in the bank app."
+  },
+  {
+    "id": "LG023",
+    "category": "upi_safety",
+    "label": "legitimate",
+    "message": "You do not need to enter your UPI PIN to receive money. Never approve a collect request you do not recognise."
+  },
+  {
+    "id": "LG024",
+    "category": "job_application",
+    "label": "legitimate",
+    "message": "Thank you for applying for our graduate trainee role. Our recruitment team will contact shortlisted candidates."
+  },
+  {
+    "id": "LG025",
+    "category": "investment_notice",
+    "label": "legitimate",
+    "message": "Mutual fund investments are subject to market risks. Read all scheme-related documents carefully before investing."
+  },
+  {
+    "id": "LG026",
+    "category": "refund_confirmation",
+    "label": "legitimate",
+    "message": "Your refund of Rs 799 has been processed to your original payment method. Please allow several business days for it to appear."
+  },
+  {
+    "id": "LG027",
+    "category": "account_update",
+    "label": "legitimate",
+    "message": "Your contact details were updated successfully in the official app. Contact support through the app if you did not make this change."
+  },
+  {
+    "id": "LG028",
+    "category": "delivery_schedule",
+    "label": "legitimate",
+    "message": "Your courier delivery is scheduled for tomorrow between 10 am and 2 pm. No payment is requested in this notification."
+  },
+  {
+    "id": "LG029",
+    "category": "security_warning",
+    "label": "legitimate",
+    "message": "Warning: Fake bank messages may threaten account suspension. Do not click unexpected links; contact your bank through official channels."
+  },
+  {
+    "id": "LG030",
+    "category": "ordinary_reminder",
+    "label": "legitimate",
+    "message": "Please submit your school project by Friday. Let me know if you need more time."
+  },
+  {
+    "id": "LG031",
+    "category": "payment_due",
+    "label": "legitimate",
+    "message": "Your internet bill is due on the 20th. You can review the amount and pay securely through the provider's official app."
+  },
+  {
+    "id": "LG032",
+    "category": "account_alert",
+    "label": "legitimate",
+    "message": "Your account password was changed successfully. If you made this change, no further action is needed."
+  },
+  {
+    "id": "LG033",
+    "category": "job_offer",
+    "label": "legitimate",
+    "message": "We would like to invite you to interview for our work from home support role. There is no application fee."
+  },
+  {
+    "id": "LG034",
+    "category": "financial_education",
+    "label": "legitimate",
+    "message": "Be cautious of investment offers promising guaranteed high returns. Verify financial advisers before transferring money."
+  },
+  {
+    "id": "LG035",
+    "category": "shopping_offer",
+    "label": "legitimate",
+    "message": "Your shopping app has a limited-time discount on selected products. Review the offer in the official app if interested."
+  },
+  {
+    "id": "LG036",
+    "category": "bank_alert",
+    "label": "legitimate",
+    "message": "Your debit card was used for a purchase of Rs 1200. If you do not recognise the transaction, contact your bank immediately using its official number."
+  },
+  {
+    "id": "LG037",
+    "category": "upi_confirmation",
+    "label": "legitimate",
+    "message": "You paid Rs 350 using UPI to a merchant. Check the transaction details in your payment app."
+  },
+  {
+    "id": "LG038",
+    "category": "parcel_notice",
+    "label": "legitimate",
+    "message": "The courier attempted delivery but could not reach you. Use the official tracking page to arrange another delivery attempt."
+  },
+  {
+    "id": "LG039",
+    "category": "security_advice",
+    "label": "legitimate",
+    "message": "If someone asks you to share an OTP to receive a refund, stop and contact the company through its official support channel."
+  },
+  {
+    "id": "LG040",
+    "category": "routine_notification",
+    "label": "legitimate",
+    "message": "Your appointment is confirmed for 3 pm tomorrow. Reply through the official booking service if you need to reschedule."
+  },
+  {
+    "id": "LG041",
+    "category": "bank_kyc_advice",
+    "label": "legitimate",
+    "message": "If your KYC needs updating, open your bank's official app or visit a branch. Do not share your password or OTP in a message."
+  },
+  {
+    "id": "LG042",
+    "category": "payment_reminder",
+    "label": "legitimate",
+    "message": "Your monthly subscription renews next week. Review your plan and billing details in your account settings."
+  },
+  {
+    "id": "LG043",
+    "category": "investment_information",
+    "label": "legitimate",
+    "message": "A fixed deposit offers a stated interest rate for a defined period. Check the bank's official terms before opening one."
+  },
+  {
+    "id": "LG044",
+    "category": "school_award",
+    "label": "legitimate",
+    "message": "Congratulations to the science competition winners. The certificates will be distributed during the school assembly."
+  },
+  {
+    "id": "LG045",
+    "category": "account_suspension_advice",
+    "label": "legitimate",
+    "message": "If you receive a message threatening account suspension, do not use its link. Check your account directly through the official app."
+  },
+  {
+    "id": "LG046",
+    "category": "delivery_fee_notice",
+    "label": "legitimate",
+    "message": "The checkout page lists a delivery fee of Rs 60 before you place your order. Review the total before confirming payment."
+  },
+  {
+    "id": "LG047",
+    "category": "job_recruitment",
+    "label": "legitimate",
+    "message": "Applications for our graduate programme close Friday. Submit your CV using the careers portal on our official website."
+  },
+  {
+    "id": "LG048",
+    "category": "refund_advice",
+    "label": "legitimate",
+    "message": "A genuine refund should not require you to disclose your banking password or UPI PIN. Check the refund status in the original merchant app."
+  },
+  {
+    "id": "LG049",
+    "category": "routine_transfer",
+    "label": "legitimate",
+    "message": "Your rent transfer is scheduled for the first day of next month. Review the recipient details before approving it."
+  },
+  {
+    "id": "LG050",
+    "category": "security_reminder",
+    "label": "legitimate",
+    "message": "Keep your banking app updated and enable transaction notifications. Contact your bank through verified channels if you notice unusual activity."
+  }
+
+]

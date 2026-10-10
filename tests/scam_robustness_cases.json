@@ -1,0 +1,375 @@
+
+[
+  {
+    "id": "RB001",
+    "category": "subtle_phishing",
+    "label": "scam",
+    "message": "We couldn't complete your bank verification. Please confirm your credentials using http://bank-verify.example.invalid"
+  },
+  {
+    "id": "RB002",
+    "category": "upi_fraud",
+    "label": "scam",
+    "message": "Aapko refund receive karna hai? Payment approve karne ke liye apna UPI PIN enter karein."
+  },
+  {
+    "id": "RB003",
+    "category": "courier_scam",
+    "label": "scam",
+    "message": "Your parcel is on hold due to an incomplete address. Pay a small redelivery fee through this unverified link."
+  },
+  {
+    "id": "RB004",
+    "category": "investment_fraud",
+    "label": "scam",
+    "message": "Join our private trading group. Guaranteed 5x returns this week with zero risk. Send your deposit to reserve a slot."
+  },
+  {
+    "id": "RB005",
+    "category": "legitimate_otp",
+    "label": "legitimate",
+    "message": "Your login OTP is 483921. Do not share it with anyone. If you did not request this code, ignore this message."
+  },
+  {
+    "id": "RB006",
+    "category": "legitimate_payment",
+    "label": "legitimate",
+    "message": "Your electricity bill payment of Rs 1,240 was successful. Transaction reference: TXN728491."
+  },
+  {
+    "id": "RB007",
+    "category": "legitimate_delivery",
+    "label": "legitimate",
+    "message": "Your parcel is out for delivery today. Track the shipment using the official courier app."
+  },
+  {
+    "id": "RB008",
+    "category": "legitimate_security",
+    "label": "legitimate",
+    "message": "For your security, never share your password or OTP with anyone, including customer support."
+  },
+  {
+    "id": "RB009",
+    "category": "hinglish_social_engineering",
+    "label": "scam",
+    "message": "Sir aapka account band hone wala hai, jaldi se details bhejo warna access chala jayega."
+  },
+  {
+    "id": "RB010",
+    "category": "ambiguous_payment",
+    "label": "legitimate",
+    "message": "Please complete your pending payment through the merchant's official application before the due date."
+  },
+  {
+    "id": "RB011",
+    "category": "fake_customer_support",
+    "label": "scam",
+    "message": "Customer care se bol raha hoon. Refund release karne ke liye screen sharing on karo aur banking app kholo."
+  },
+  {
+    "id": "RB012",
+    "category": "legitimate_bank_alert",
+    "label": "legitimate",
+    "message": "Your bank statement for September is available in the official mobile banking application."
+  },
+{
+  "id": "RB013",
+  "message": "Your SBI YONO access will expire today. Complete verification at https://sbi-secure.example.invalid/verify to prevent suspension.",
+  "label": "scam"
+},
+{
+  "id": "RB014",
+  "message": "Bhai, aapka UPI refund pending hai. Refund receive karne ke liye collect request approve karo aur apna UPI PIN enter karo.",
+  "label": "scam"
+},
+{
+  "id": "RB015",
+  "message": "Delivery failed because your address is incomplete. Pay a small re-delivery fee immediately using this link or your parcel will be returned.",
+  "label": "scam"
+},
+{
+  "id": "RB016",
+  "message": "Congratulations! Your mobile number has won a ₹25,00,000 government reward. Pay ₹2,499 processing charges to release the amount.",
+  "label": "scam"
+},
+{
+  "id": "RB017",
+  "message": "I am calling from bank security. Tell me the OTP you just received so I can cancel the suspicious transaction.",
+  "label": "scam"
+},
+{
+  "id": "RB018",
+  "message": "Limited investment opportunity: guaranteed 5x returns in 30 days. Transfer funds today to secure your slot. No risk involved.",
+  "label": "scam"
+},
+{
+  "id": "RB019",
+  "message": "Aapka electricity connection aaj raat cut ho jayega. Bill clear karne ke liye is number par payment bhejo aur receipt share karo.",
+  "label": "scam"
+},
+{
+  "id": "RB020",
+  "message": "Your KYC update has failed. Reply with your Aadhaar number, card number and date of birth to restore your account.",
+  "label": "scam"
+},
+{
+  "id": "RB021",
+  "message": "Hi, I accidentally sent you ₹8,000. Please scan this QR code to receive the refund. Do not contact your bank.",
+  "label": "scam"
+},
+{
+  "id": "RB022",
+  "message": "Your parcel is stuck at customs. Pay the release fee now through the payment link sent by our agent.",
+  "label": "scam"
+},
+{
+  "id": "RB023",
+  "message": "Work from home: earn ₹12,000 daily by liking videos. Deposit ₹999 to unlock your first task and guaranteed payout.",
+  "label": "scam"
+},
+{
+  "id": "RB024",
+  "message": "Your bank account has been flagged for money laundering. Share your login details immediately to avoid arrest.",
+  "label": "scam"
+},
+{
+  "id": "RB025",
+  "message": "Sir, your credit card reward points are expiring. Send your full card number and CVV on WhatsApp to redeem them.",
+  "label": "scam"
+},
+{
+  "id": "RB026",
+  "message": "Mummy hospital mein emergency hai. Main dost bol raha hoon, mera number change ho gaya. Abhi is UPI ID par paise bhejo, call mat karna.",
+  "label": "scam"
+},
+{
+  "id": "RB027",
+  "message": "Your SIM will be blocked in 30 minutes. Install this APK sent by our telecom support agent to keep your number active.",
+  "label": "scam"
+},
+{
+  "id": "RB028",
+  "message": "We detected an unauthorised payment. Install this remote support app and share your screen so our agent can secure your banking app.",
+  "label": "scam"
+},
+{
+  "id": "RB029",
+  "message": "Your income tax refund is approved. Pay a refundable verification charge of ₹499 before the refund can be credited.",
+  "label": "scam"
+},
+{
+  "id": "RB030",
+  "message": "Aapka bank account freeze hone wala hai. Is WhatsApp number par Aadhaar aur OTP bhejo, warna account band ho jayega.",
+  "label": "scam"
+},
+{
+  "id": "RB031",
+  "message": "Your online order has been cancelled. To receive compensation, enter your card details and OTP at https://order-refund.example.invalid/claim",
+  "label": "scam"
+},
+{
+  "id": "RB032",
+  "message": "We are hiring for a government data entry job. Pay ₹1,500 for registration and your job is guaranteed without an interview.",
+  "label": "scam"
+},
+{
+  "id": "RB033",
+  "message": "Your demat account will be suspended. Share your trading password with our executive to complete mandatory verification.",
+  "label": "scam"
+},
+{
+  "id": "RB034",
+  "message": "Your friend has sent you a secret gift. Download this file and sign in with your Google password to view it.",
+  "label": "scam"
+},
+{
+  "id": "RB035",
+  "message": "Final notice: a police complaint has been registered against your number. Pay the settlement amount immediately to avoid legal action.",
+  "label": "scam"
+},
+{
+  "id": "RB036",
+  "message": "Bhai investment group join kar le. Pehle ₹5,000 bhej, daily fixed profit milega. Loss ka koi chance nahi hai.",
+  "label": "scam"
+},
+{
+  "id": "RB037",
+  "message": "Your broadband payment failed. Share your OTP with our technician so we can reactivate the service.",
+  "label": "scam"
+},
+{
+  "id": "RB038",
+  "message": "A buyer says your item payment is ready. Scan this QR code and enter your UPI PIN to receive the money.",
+  "label": "scam"
+},
+{
+  "id": "RB039",
+  "message": "Your insurance policy bonus is ready. Pay a processing fee to this personal account before midnight to release your bonus.",
+  "label": "scam"
+},
+{
+  "id": "RB040",
+  "message": "We are from customer care. Please disable Play Protect and install the attached app so we can fix your payment problem.",
+  "label": "scam"
+},
+{
+  "id": "RB041",
+  "message": "Your account security check is incomplete. Send a photo of your debit card, including the back side, for identity confirmation.",
+  "label": "scam"
+},
+{
+  "id": "RB042",
+  "message": "Urgent: your parcel cannot be delivered until you confirm your address and pay ₹10. Open the link sent by this unknown number.",
+  "label": "scam"
+},
+{
+  "id": "RB043",
+  "message": "Security reminder: never share your OTP, UPI PIN, password or CVV with anyone, including people claiming to be bank staff.",
+  "label": "legitimate"
+},
+{
+  "id": "RB044",
+  "message": "Your electricity bill payment of ₹1,240 was successful. Transaction reference: DEMO48291. Thank you.",
+  "label": "legitimate"
+},
+{
+  "id": "RB045",
+  "message": "Your parcel is out for delivery today. Track its progress in the official courier app you already use.",
+  "label": "legitimate"
+},
+{
+  "id": "RB046",
+  "message": "Your bank statement for September is now available in your banking app. Sign in through the app to view or download it.",
+  "label": "legitimate"
+},
+{
+  "id": "RB047",
+  "message": "Your OTP for logging in is 482193. Do not share it with anyone. If you did not request this code, ignore this message.",
+  "label": "legitimate"
+},
+{
+  "id": "RB048",
+  "message": "Payment received: ₹750 for order DEMO-1042. Your order confirmation is available in the merchant app.",
+  "label": "legitimate"
+},
+{
+  "id": "RB049",
+  "message": "Reminder: your mobile recharge expires tomorrow. You can check available plans and recharge through your operator's official app.",
+  "label": "legitimate"
+},
+{
+  "id": "RB050",
+  "message": "Your appointment is confirmed for 11:30 AM tomorrow. Please use the clinic's official contact number if you need to reschedule.",
+  "label": "legitimate"
+},
+{
+  "id": "RB051",
+  "message": "A new device signed in to your account. If this was you, no action is needed. If not, open the official app directly and review your security settings.",
+  "label": "legitimate"
+},
+{
+  "id": "RB052",
+  "message": "Bhai, payment ho gaya hai. Order confirmation app mein dikh raha hai. Ek baar check kar lena.",
+  "label": "legitimate"
+},
+{
+  "id": "RB053",
+  "message": "Your salary has been credited to your bank account. Please check your balance using your normal banking channel.",
+  "label": "legitimate"
+},
+{
+  "id": "RB054",
+  "message": "Your train ticket booking is confirmed. Please review your journey details in the official railway booking app.",
+  "label": "legitimate"
+},
+{
+  "id": "RB055",
+  "message": "Your password was changed successfully. If you made this change, you can ignore this notification. If not, visit the service directly using its official app.",
+  "label": "legitimate"
+},
+{
+  "id": "RB056",
+  "message": "Your monthly data usage has reached 80% of your plan. Check the remaining allowance in your mobile operator's app.",
+  "label": "legitimate"
+},
+{
+  "id": "RB057",
+  "message": "Your UPI payment of ₹250 to Demo Store was successful. Reference number: DEMO-UPI-5812.",
+  "label": "legitimate"
+},
+{
+  "id": "RB058",
+  "message": "Your library book is due on Monday. Please return it by the due date to avoid a late fee.",
+  "label": "legitimate"
+},
+{
+  "id": "RB059",
+  "message": "Your college application has been received. You can review its status by signing in through the college website you used to apply.",
+  "label": "legitimate"
+},
+{
+  "id": "RB060",
+  "message": "Your parcel delivery was unsuccessful because nobody was available. You can arrange another attempt through the courier's official app.",
+  "label": "legitimate"
+},
+{
+  "id": "RB061",
+  "message": "Reminder: your credit card bill is due on the 18th. Review the amount and pay through your bank's official app.",
+  "label": "legitimate"
+},
+{
+  "id": "RB062",
+  "message": "This is a reminder to review your account security. Use a unique password and enable two-factor authentication where available.",
+  "label": "legitimate"
+},
+{
+  "id": "RB063",
+  "message": "Your online order has shipped. The order details and tracking information are available in your shopping account.",
+  "label": "legitimate"
+},
+{
+  "id": "RB064",
+  "message": "Aapka mobile recharge successful ho gaya hai. Plan details aur validity operator ke official app mein check kar sakte hain.",
+  "label": "legitimate"
+},
+{
+  "id": "RB065",
+  "message": "Your bank has published a notice about scheduled maintenance. Some digital services may be temporarily unavailable during the stated window.",
+  "label": "legitimate"
+},
+{
+  "id": "RB066",
+  "message": "Your insurance premium payment was successful. Keep the receipt for your records and check policy details in your insurer's official account.",
+  "label": "legitimate"
+},
+{
+  "id": "RB067",
+  "message": "The merchant has issued a refund for your returned item. Check your original payment method for the credit; you do not need to share an OTP to receive it.",
+  "label": "legitimate"
+},
+{
+  "id": "RB068",
+  "message": "Your meeting starts in 15 minutes. The calendar invitation contains the meeting details and joining information.",
+  "label": "legitimate"
+},
+{
+  "id": "RB069",
+  "message": "Your UPI PIN is used to authorise payments. Never enter it to receive money or disclose it to another person.",
+  "label": "legitimate"
+},
+{
+  "id": "RB070",
+  "message": "Your bank has received your cheque deposit. The amount may take time to clear. Check the status in your account.",
+  "label": "legitimate"
+},
+{
+  "id": "RB071",
+  "message": "Your subscription renewal is scheduled for next week. Review or cancel it through the service's official account settings if needed.",
+  "label": "legitimate"
+},
+{
+  "id": "RB072",
+  "message": "Your device security scan is complete. No issues were detected by this scan. Keep your software updated and avoid installing apps from unknown sources.",
+  "label": "legitimate"
+}
+]
