@@ -1,40 +1,58 @@
 # 🛡️ ScamShield
 
-**An AI-powered scam detection and digital safety platform.**
+**Before you click, know what you're looking at.**
 
-ScamShield helps users examine suspicious messages, links, and screenshots to identify potential scam indicators, understand warning signs, and make more informed decisions online.
+ScamShield is an AI-assisted digital-safety prototype that helps people inspect suspicious messages and URLs, understand potential warning signs, and choose safer next steps.
 
-> **Project status:** Active prototype. ScamShield provides risk assessments, not definitive proof that something is or isn't a scam.
+<p align="center">
+  <a href="https://scam-shield-lyart-pi.vercel.app/"><strong>🚀 Try the live demo</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://scamshield-api-8ns3.onrender.com/api/health">API health</a>
+</p>
 
-## ✨ Features
+> **Important:** ScamShield is an experimental decision-support tool, not a guarantee of safety. Its risk score is a heuristic assessment—not a probability that a message is fraudulent. Always verify important requests through official channels.
 
-- **Message analysis** — examine suspicious texts for potential fraud indicators.
-- **URL inspection** — analyze links using heuristic signals.
-- **Screenshot analysis** — extract text from supported screenshots using OCR.
-- **AI-assisted detection** — use Gemini or a local Ollama model for contextual analysis.
-- **Risk assessment** — combine available signals into a structured assessment.
-- **Evidence-based explanations** — surface warning signs instead of returning only a label.
-- **Scam awareness** — explore educational examples to learn common scam patterns.
+## ✨ What it can do
 
-Feature availability depends on the configured model, API connection, and runtime environment.
+- **Message analysis** — inspect text for urgency, threats, suspicious requests, and other scam indicators.
+- **URL inspection** — surface structural warning signs in links.
+- **Evidence-based explanations** — show why an input was flagged instead of returning only a label.
+- **Suggested next steps** — provide practical safety guidance based on the findings.
+- **Screenshot text extraction** — supported when OCR dependencies are installed and available in the runtime.
+- **Scam awareness** — explore educational material about common scam patterns.
 
-## 🧠 How It Works
+Actual results and feature availability depend on the configured AI provider, hosting environment, and input. ScamShield can produce both false positives and false negatives.
 
-1. **Input:** The user submits a message, link, or supported screenshot.
-2. **Extraction:** Screenshot text is extracted using OCR when applicable.
-3. **Analysis:** The system evaluates available heuristic signals and AI-generated findings.
-4. **Fusion:** The analysis components combine their findings into a risk assessment.
-5. **Output:** The frontend presents the result and relevant warning signs.
+## 🧪 Try the demo
 
-## 🏗️ Technology Stack
+1. Open the [ScamShield live website](https://scam-shield-lyart-pi.vercel.app/).
+2. Open the Playground.
+3. Submit a sample message or URL and run the analysis.
+4. Review the risk assessment, evidence, and recommended next steps.
 
-- **Frontend:** React, TypeScript, Vite
-- **UI:** Custom CSS, Framer Motion, Lucide React
-- **Backend:** Python, FastAPI
-- **AI:** Google Gemini API or local Ollama
-- **Screenshot processing:** Pillow, pytesseract, Tesseract OCR
+Try both suspicious and ordinary messages. A useful test checks whether the explanation matches the content—not just whether the score is high or low.
 
-## 📂 Project Structure
+**Privacy tip:** Use fictional examples for public testing. Do not submit passwords, OTPs, bank details, private conversations, or other sensitive information. Submitted content may be processed by the configured AI provider.
+
+## 🧠 How it works
+
+1. **Input:** A user submits text, a URL, or a supported screenshot.
+2. **Extraction:** OCR extracts screenshot text when the feature and dependencies are available.
+3. **Analysis:** Heuristic checks and the configured AI provider evaluate available signals.
+4. **Fusion:** The analysis components combine their findings into a structured assessment.
+5. **Guidance:** The frontend presents a score, explanations, and suggested next steps.
+
+## 🏗️ Technology
+
+| Layer | Technology |
+| --- | --- |
+| Frontend | React, TypeScript, Vite |
+| UI and motion | Custom CSS, Framer Motion, Lucide React |
+| API | Python, FastAPI |
+| AI | Google Gemini API or local Ollama, depending on configuration |
+| Screenshot OCR | Pillow, pytesseract, Tesseract OCR |
+
+## 📂 Project structure
 
 ```text
 ScamShield/
@@ -54,48 +72,48 @@ ScamShield/
 └── README.md
 ```
 
-## 🚀 Run Locally
+## 💻 Run locally (Windows PowerShell)
 
-### Prerequisites
+### Requirements
 
-- Python 3.12+
+- Python 3.12 or newer
 - Node.js and npm
-- A Gemini API key or a configured local Ollama installation
-- Tesseract OCR for screenshot analysis
+- A Gemini API key **or** a working local Ollama setup
+- Tesseract OCR installed and configured if you want to test screenshot OCR
 
 ### 1. Install backend dependencies
 
-From the project root:
+Run from the repository root:
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
 
-### 2. Configure AI access
+### 2. Configure the AI provider
 
-Set your Gemini API key as an environment variable. Never commit real API keys to GitHub.
+For a local Gemini-backed run, set your key in the current PowerShell session:
 
 ```powershell
-$env:GEMINI_API_KEY = "YOUR_API_KEY"
+$env:GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
 ```
 
-Alternatively, configure Ollama and the model specified by your project settings.
+Replace the placeholder locally. **Never put a real API key in source code, README files, screenshots, or Git commits.** For local Ollama use, install/start Ollama and pull the model expected by your configuration instead.
 
-### 3. Start the backend
+Optional settings are documented in `.env.example`. Environment variables set in PowerShell apply only to that terminal session unless you configure them separately.
+
+### 3. Start the API
+
+From the repository root:
 
 ```powershell
 python -m uvicorn api:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Check the health endpoint:
-
-```text
-http://127.0.0.1:8000/api/health
-```
+Check the API at [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health).
 
 ### 4. Start the frontend
 
-Open another terminal:
+Open a second PowerShell terminal:
 
 ```powershell
 cd frontend
@@ -103,59 +121,58 @@ npm install
 npm run dev
 ```
 
-Open the local URL displayed by Vite.
+Open the local URL printed by Vite. If you configure `VITE_SCAMSHIELD_API_URL`, point it to the backend base URL (for example, `http://127.0.0.1:8000`) and restart Vite after changing the variable.
 
-The frontend API URL can be configured with `VITE_SCAMSHIELD_API_URL` when required. Restart the frontend development server after changing environment variables.
+## ☁️ Deployment overview
 
-## 🧪 Testing
+The current public demo uses:
 
-The `tests/` directory contains scam-analysis test cases and evaluation artifacts.
+- **Frontend:** Vercel — [open the website](https://scam-shield-lyart-pi.vercel.app/)
+- **Backend:** Render — [check API health](https://scamshield-api-8ns3.onrender.com/api/health)
 
-Run the evaluation script from the project root:
+For a similar deployment, configure the frontend's `VITE_SCAMSHIELD_API_URL` to the backend's public base URL. Configure `GEMINI_API_KEY` privately in the backend host's environment settings, and set `SCAMSHIELD_CORS_ORIGINS` to the exact frontend origin(s). Do not expose the Gemini key through a `VITE_` variable. Free hosting tiers and AI quotas can change; a sleeping free backend may take time to wake up.
 
-```powershell
-python tests/evaluate_scamshield.py
-```
+Screenshot OCR on a hosted backend requires Tesseract to be installed in that runtime as well as the Python packages. Do not assume it is available just because text and URL analysis work.
 
-Review the script and its dependencies before running it. Evaluation results depend on the dataset, model, and scoring criteria; they should not be interpreted as proof of real-world detection accuracy.
+## 🧪 Testing and evaluation
 
-## 🔒 Privacy and Security
+The repository includes a `tests/` directory with test/evaluation material. Before running any evaluation script, inspect its code and dependencies. Results depend on the test data, model, and scoring rules; they are not proof of real-world detection accuracy.
+
+When testing changes, include both:
+- suspicious examples, such as urgent requests for payment or credentials;
+- benign examples, such as routine meeting confirmations or appointment reminders.
+
+## 🔒 Privacy and security
 
 - Never commit API keys, credentials, or private environment files.
-- Avoid submitting real financial credentials, passwords, OTPs, or sensitive personal information.
-- Do not assume that submitted data is private merely because the frontend does not store it locally. External AI providers may process submitted content.
-- Public deployments should use HTTPS, restrict CORS appropriately, and apply suitable request limits and abuse protections.
+- Use fictional examples for public testing; avoid submitting sensitive or confidential content.
+- AI providers may process submitted content according to their own service terms and privacy policies.
+- A public deployment should use HTTPS, narrowly configured CORS, request limits, and abuse protections.
+- Do not rely on a single score to decide whether a payment or disclosure is safe.
 
-## ⚠️ Limitations
+## ⚠️ Known limitations
 
-- A risk assessment can produce false positives and false negatives.
-- URL heuristics are not equivalent to a comprehensive threat-intelligence service.
-- AI-generated explanations can be incorrect.
-- Risk scores are not calibrated probabilities of fraud unless separately validated.
-- A successful health check does not necessarily mean every analysis provider is available.
-- Model quotas, hosting availability, and OCR support depend on the deployment configuration.
+- False positives and false negatives are possible.
+- URL structure checks are not the same as a full reputation or threat-intelligence service.
+- AI-generated findings may be incomplete or incorrect.
+- Scores are not calibrated probabilities unless separately validated.
+- A successful health check confirms API responsiveness, not necessarily that every analysis provider or optional feature is available.
+- Model quotas, free-host availability, and OCR support depend on deployment configuration.
 
-**Never rely on ScamShield alone to authorize payments, disclose sensitive information, or decide whether a message is safe. Verify important claims through trusted official channels.**
+**If a message claims to be from a bank, government agency, delivery service, or another organisation, verify it using the official app, website, or phone number you find independently—not the contact details in the suspicious message.**
 
 ## 🗺️ Roadmap
 
-- [ ] Public deployment and health monitoring
-- [ ] Documented API endpoints and response schemas
-- [ ] Reproducible evaluation metrics
-- [ ] Expanded scam datasets and adversarial testing
-- [ ] Improved URL reputation checks
-- [ ] Privacy-focused usage analytics and abuse prevention
+- [ ] Publish reproducible evaluation metrics
+- [ ] Document API endpoints and response schemas
+- [ ] Expand benign and scam test coverage
+- [ ] Improve URL reputation checks
+- [ ] Add privacy-conscious usage and abuse protections
 
 ## 📄 License
 
-A license has not yet been specified. Add a `LICENSE` file before describing the project as open source.
+A license has not yet been specified. Until a `LICENSE` file is added, do not assume this repository grants permission to reuse or redistribute the code.
 
 ---
 
 Built as an ongoing project to make digital safety tools more accessible.
-
-- React + TypeScript + Vite
-- Framer Motion
-- Lucide React
-- Custom responsive CSS / SVG animation
-- FastAPI adapter for the existing ScamShield analyzer
