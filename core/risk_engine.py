@@ -423,7 +423,7 @@ class RiskEngine:
             if "contains_url" not in signals:
                 signals.append("contains_url")
             reasons.append(
-                "The message contains a URL. Its destination should be evaluated separately before opening it."
+                "The message contains a URL. A link alone does not indicate fraud; reputation status is reported separately."
             )
             for raw_url in urls:
                 candidate = raw_url
@@ -534,7 +534,7 @@ class RiskEngine:
         )):
             return "Suspicious URL Indicators"
         if "contains_url" in signals:
-            return "URL Present - Needs Verification"
+            return "General Message"
         if "urgency" in signals:
             return "Urgent Request - Needs Verification"
         return "No Strong Rule Indicators"
