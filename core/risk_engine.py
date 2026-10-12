@@ -216,6 +216,34 @@ class RiskEngine:
         re.IGNORECASE,
     )
 
+    @classmethod
+    def _strip_protective_clauses(cls, text: str) -> str:
+        """Remove protective clauses without masking separate risky clauses.
+
+        Each sentence is handled separately, and only text matched by a known
+        protective-warning pattern is removed. A disclaimer at the end of a
+        message therefore cannot cancel a separate request to enter/disclose an
+        OTP, make a payment, or take another risky action elsewhere in it.
+        """
+        if not text:
+            return text
+
+        pieces = re.split(r"(?<=[.!?])\s+|\n+", text)
+        protective_patterns = (
+            cls.PROTECTIVE_WARNING_PATTERN,
+            cls.PROTECTIVE_ADVICE_PATTERN,
+            cls.PROTECTIVE_UPI_WARNING_PATTERN,
+        )
+        cleaned_pieces: list[str] = []
+        for piece in pieces:
+            cleaned = piece
+            for pattern in protective_patterns:
+                cleaned = pattern.sub(" ", cleaned)
+            cleaned = re.sub(r"\s+", " ", cleaned).strip()
+            if cleaned:
+                cleaned_pieces.append(cleaned)
+        return " ".join(cleaned_pieces)
+
     def analyze(
         self,
         text: str,
@@ -234,7 +262,7 @@ class RiskEngine:
                 ],
             )
 
-        normalized = text.lower().strip()
+        normalized = self._strip_protective_clauses(text.lower().strip())
         score = 0
         signals: List[str] = []
         reasons: List[str] = []
@@ -258,24 +286,12 @@ class RiskEngine:
             item for item in dict.fromkeys(url_signals or []) if isinstance(item, str)
         ]
 
-        protective_advice = bool(self.PROTECTIVE_ADVICE_PATTERN.search(normalized))
-        protective_warning = bool(
-            self.PROTECTIVE_WARNING_PATTERN.search(normalized) or protective_advice
-        )
-        protective_upi_warning = bool(
-            self.PROTECTIVE_UPI_WARNING_PATTERN.search(normalized) or protective_advice
-        )
-
         credential_request = matches(self.CREDENTIAL_REQUEST_PATTERNS)
-        if protective_warning:
-            credential_request = False
 
         financial_action = matches(self.FINANCIAL_ACTION_PATTERNS)
-        if protective_advice:
-            financial_action = False
 
-        threats = matches(self.THREAT_PATTERNS) and not protective_advice
-        urgency = matches(self.URGENCY_PATTERNS) and not protective_advice
+        threats = matches(self.THREAT_PATTERNS)
+        urgency = matches(self.URGENCY_PATTERNS)
 
         # 1. Credential theft.
         if credential_request:
@@ -292,13 +308,13 @@ class RiskEngine:
             )
 
         # 3. Prize claims and advance-fee rewards.
-        if not protective_advice and matches(self.PRIZE_SCAM_PATTERNS):
+        if matches(self.PRIZE_SCAM_PATTERNS):
             add_signal(
                 "prize_claim", 20,
                 "The message makes a prize or reward claim that should be independently verified.",
             )
 
-        if not protective_advice and self.ADVANCE_FEE_REWARD_PATTERN.search(normalized):
+        if self.ADVANCE_FEE_REWARD_PATTERN.search(normalized):
             add_signal(
                 "advance_fee_reward_scheme", 15,
                 "The message requests an advance or activation fee to obtain a promised reward, grant, or payment.",
@@ -316,14 +332,14 @@ class RiskEngine:
             r"\b(?:earn|paying)\s+(?:rs\.?|inr|â‚¹|\$)?\s*[\d,]+\s*(?:daily|per\s+day|a\s+day)\b",
             normalized, re.IGNORECASE,
         ))
-        if not protective_advice and (job_offer or re.search(r"\b(?:job|worker|worker id|onboarding)\b", normalized)) and (job_fee or unrealistic_earnings):
+        if (job_offer or re.search(r"\b(?:job|worker|worker id|onboarding)\b", normalized)) and (job_fee or unrealistic_earnings):
             add_signal(
                 "suspicious_job_offer", 20,
                 "The job-related message combines an upfront fee/deposit or an unusually high earnings claim.",
             )
 
         # 5. Investment promises.
-        if not protective_advice and matches(self.INVESTMENT_SCAM_PATTERNS):
+        if matches(self.INVESTMENT_SCAM_PATTERNS):
             add_signal(
                 "suspicious_investment", 25,
                 "The message promises unusually high or guaranteed investment returns.",
@@ -332,27 +348,27 @@ class RiskEngine:
         # 6. Delivery fees require both a delivery problem and payment.
         delivery_problem = matches(self.DELIVERY_SCAM_PATTERNS)
         delivery_payment = matches(self.DELIVERY_PAYMENT_PATTERNS)
-        if not protective_advice and delivery_problem and delivery_payment:
+        if delivery_problem and delivery_payment:
             add_signal(
                 "suspicious_delivery_fee", 22,
                 "The message combines a parcel or delivery problem with a payment request.",
             )
 
         # 7. UPI/refund manipulation and collect requests.
-        if not protective_upi_warning and matches(self.UPI_REFUND_MANIPULATION_PATTERNS):
+        if matches(self.UPI_REFUND_MANIPULATION_PATTERNS):
             add_signal(
                 "upi_refund_manipulation", 35,
                 "The message asks the recipient to approve a payment request to receive a refund. Verify in the official UPI app before acting.",
             )
 
-        if not protective_upi_warning and matches(self.UPI_SCAM_PATTERNS):
+        if matches(self.UPI_SCAM_PATTERNS):
             add_signal(
                 "suspicious_upi_request", 30,
                 "The message may misuse a UPI PIN or QR code in connection with receiving money.",
             )
 
         # 8. Crypto recovery phrases/private keys.
-        if not protective_advice and matches(self.CRYPTO_SECRET_REQUEST_PATTERNS):
+        if matches(self.CRYPTO_SECRET_REQUEST_PATTERNS):
             add_signal(
                 "crypto_secret_request", 40,
                 "The message appears to request a wallet recovery phrase, seed phrase, or private key. Never share these secrets.",
@@ -368,7 +384,7 @@ class RiskEngine:
             r"\b(?:transfer|payment|pay|vendor|supplier|bank details|account details)\b",
             normalized,
         ))
-        if not protective_advice and bank_change and secrecy and payment_context:
+        if bank_change and secrecy and payment_context:
             add_signal(
                 "confidential_bank_change", 35,
                 "The message combines bank-detail or payment changes with secrecy. Independently verify through a trusted contact method.",
@@ -396,8 +412,8 @@ class RiskEngine:
             brand for brand in self.BRAND_KEYWORDS
             if re.search(r"(?<!\w)" + re.escape(brand) + r"(?!\w)", normalized)
         ]
-        account_impersonation_link = bool(self.ACCOUNT_IMPERSONATION_LINK_PATTERN.search(text))
-        if account_impersonation_link and not protective_advice:
+        account_impersonation_link = bool(self.ACCOUNT_IMPERSONATION_LINK_PATTERN.search(normalized))
+        if account_impersonation_link:
             add_signal(
                 "account_update_link_impersonation", 25,
                 "The message combines a recognizable financial brand, an account/KYC update or suspension claim, and a link. Verify through the institution's official app or website.",
@@ -411,7 +427,7 @@ class RiskEngine:
             "crypto_secret_request", "confidential_bank_change",
             "threat_or_pressure",
         ))
-        if brand_matches and suspicious_context and not protective_advice:
+        if brand_matches and suspicious_context:
             add_signal(
                 "possible_impersonation", 8,
                 "A recognizable organization is mentioned alongside a suspicious request. The sender's identity has not been verified.",

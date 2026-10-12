@@ -52,6 +52,7 @@ class URLAnalyzer:
         "flipkart": ["flipkart.com"],
         "paytm": ["paytm.com"],
         "phonepe": ["phonepe.com"],
+        "myvi": ["myvi.in"],
         "google": ["google.com"],
     }
 
@@ -66,6 +67,7 @@ class URLAnalyzer:
         "flipkart": {"flipkart"},
         "paytm": {"paytm"},
         "phonepe": {"phonepe"},
+        "myvi": {"myvi"},
         "google": {"google"},
     }
 
@@ -319,8 +321,8 @@ class URLAnalyzer:
             add(5, "long_url", "The URL is unusually long. Length alone is a weak indicator.")
 
         labels = hostname.split(".")
-        if max(0, len(labels) - 2) >= 4:
-            add(8, "excessive_subdomains", "The hostname contains many subdomain levels.")
+        if max(0, len(labels) - 2) >= 3:
+            add(8, "excessive_subdomains", "The hostname contains three or more subdomain levels; check the registrable domain.")
 
         if hostname.count("-") >= 3:
             add(5, "hyphen_heavy_domain", "The hostname contains several hyphens; this is a weak indicator by itself.")
