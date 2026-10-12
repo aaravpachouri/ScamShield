@@ -12,6 +12,7 @@ from pydantic import BaseModel, Field
 from core.risk_engine import RiskEngine
 from core.fusion_engine import EvidenceFusion
 from core.url_analyzer import URLAnalyzer
+from core.semantic_explanation import normalize_uncorroborated_ai_display
 
 
 # ============================================================
@@ -167,36 +168,9 @@ class ScamAnalyzer:
             url_analysis=url_result,
         )
 
-        # UNCORROBORATED_AI_DISPLAY_CALIBRATION
-        # If the model alone raises an alarm but the final evidence fusion did not
-        # corroborate it, make the displayed explanation/action appropriately
-        # cautious instead of exposing an alarmist AI-only recommendation.
-        if (
-            not fusion_result.get("ai_verdict_corroborated", False)
-            and fusion_result.get("level") != "HIGH RISK"
-            and isinstance(ai_result, dict)
-            and ai_result.get("available") is True
-        ):
-            model_result = ai_result.get("result")
-            if isinstance(model_result, dict) and model_result.get("likely_scam") is True:
-                model_result = dict(model_result)
-                prior_explanation = model_result.get("explanation", "")
-                model_result["review_status"] = "uncorroborated_ai_concern"
-                model_result["advisory_only"] = True
-                model_result["explanation"] = (
-                    "The AI model raised a concern, but the independent rule and URL checks "
-                    "did not find enough evidence to confirm a scam. Treat this as an "
-                    "unconfirmed AI concern, not a confirmed scam. "
-                    + (prior_explanation if isinstance(prior_explanation, str) else "")
-                ).strip()
-                model_result["recommended_action"] = (
-                    "Do not treat this result alone as proof of fraud. If the message was "
-                    "unexpected, verify it using the brand's official app or website reached "
-                    "independently, rather than the message link. Never share an OTP, PIN, "
-                    "or password with a sender."
-                )
-                ai_result = dict(ai_result)
-                ai_result["result"] = model_result
+        # ENGINE_ALIGNMENT_SEMANTIC_EXPLANATION
+        # Keep displayed AI narrative aligned with the fusion evidence; raw model output is retained for review.
+        ai_result = normalize_uncorroborated_ai_display(ai_result, fusion_result, url_result)
 
         # Preserve the existing public response structure.
 
