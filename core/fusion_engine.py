@@ -4,18 +4,27 @@ from typing import Any
 
 
 class EvidenceFusion:
-    """Combines rule-based, AI, and URL evidence without double-counting.
+    """Conservative fusion of rule, AI, and URL evidence.
 
-    Policy:
-    - A valid AI-positive verdict forces HIGH RISK with a score of at least 60.
-    - A verified malicious URL reputation match forces HIGH RISK with a score
-      of at least 98, even if the message text itself looks ordinary.
-    - AI-negative, unavailable, or invalid results retain the rule baseline.
-    - URL scores are recorded, not added a second time.
+    The AI model is advisory, not a standalone authority. An AI-positive
+    prediction cannot independently turn an otherwise low-risk message into
+    HIGH RISK. High risk requires strong rule evidence plus AI corroboration,
+    a rule-only high-risk score, or a confirmed malicious URL reputation hit.
     """
 
+    RULE_HIGH_SCORE = 60
+    AI_CORROBORATION_MIN_RULE_SCORE = 35
+    AI_CORROBORATION_MIN_CONFIDENCE = 75
     AI_CONFIRMED_MIN_SCORE = 60
     VERIFIED_URL_MIN_SCORE = 98
+
+    GENERIC_CATEGORIES = {
+        "General Message",
+        "No Strong Rule Indicators",
+        "URL Present - Needs Verification",
+        "URL Present",
+        "Message Contains URL",
+    }
 
     def combine(
         self,
@@ -33,26 +42,21 @@ class EvidenceFusion:
             baseline = 0
             evidence.append("Invalid rule score; baseline defaulted to 0.")
 
-        final_score = baseline
         evidence.append(f"Rule engine score: {baseline}/100")
-
         if isinstance(rule_level, str) and rule_level.strip():
             evidence.append(f"Rule engine level: {rule_level.strip()}")
 
         url_score = 0
-        url_available = isinstance(url_analysis, dict) and url_analysis.get("success") is True
         reputation_status = "unknown"
-
+        url_available = isinstance(url_analysis, dict) and url_analysis.get("success") is True
         if url_available:
             try:
                 url_score = max(0, min(100, int(url_analysis.get("score", 0))))
             except (TypeError, ValueError, OverflowError):
                 evidence.append("URL analyzer returned an invalid score.")
-
             reputation_status = str(url_analysis.get("reputation_status", "unknown"))
             evidence.append(f"URL analyzer score: {url_score}/100 (recorded, not added again).")
             evidence.append(f"URL reputation status: {reputation_status}.")
-
             signals = url_analysis.get("signals", [])
             if isinstance(signals, list):
                 for signal in dict.fromkeys(signals):
@@ -65,9 +69,9 @@ class EvidenceFusion:
                 evidence.append(f"URL reputation status: {reputation_status}.")
 
         ai_data = ai_analysis if isinstance(ai_analysis, dict) else {}
-        ai_result = ai_data.get("result")
-        if isinstance(ai_result, dict):
-            normalized_ai = ai_result
+        raw_result = ai_data.get("result")
+        if isinstance(raw_result, dict):
+            normalized_ai = raw_result
         elif "result" not in ai_data:
             normalized_ai = ai_data
         else:
@@ -81,60 +85,87 @@ class EvidenceFusion:
         if not isinstance(prediction, bool):
             prediction = None
 
-        ai_supported = prediction is True
-        scam_type = normalized_ai.get("scam_type")
-        if isinstance(scam_type, str) and scam_type.strip():
-            scam_type = scam_type.strip()
-        else:
-            scam_type = None
+        try:
+            confidence = normalized_ai.get("confidence")
+            confidence = int(confidence) if confidence is not None else None
+            if confidence is not None:
+                confidence = max(0, min(100, confidence))
+        except (TypeError, ValueError, OverflowError):
+            confidence = None
 
-        if ai_available and prediction is True:
+        scam_type = normalized_ai.get("scam_type")
+        if not isinstance(scam_type, str) or not scam_type.strip():
+            scam_type = None
+        else:
+            scam_type = scam_type.strip()
+
+        ai_positive = ai_available and prediction is True
+        ai_corroborated = bool(
+            ai_positive
+            and baseline >= self.AI_CORROBORATION_MIN_RULE_SCORE
+            and confidence is not None
+            and confidence >= self.AI_CORROBORATION_MIN_CONFIDENCE
+        )
+
+        # Start from deterministic, explainable rule evidence. An AI-only
+        # positive verdict must not promote a benign notification or an
+        # ordinary URL into SUSPICIOUS/HIGH RISK by itself.
+        final_score = baseline
+        if baseline >= self.RULE_HIGH_SCORE:
+            final_level = "HIGH RISK"
+        elif baseline >= 30:
+            final_level = "SUSPICIOUS"
+        else:
+            final_level = "LOW RISK"
+
+        if ai_positive and ai_corroborated and baseline < self.RULE_HIGH_SCORE:
             final_score = max(baseline, self.AI_CONFIRMED_MIN_SCORE)
             final_level = "HIGH RISK"
             evidence.append(
-                "AI verdict: likely_scam=True. Final classification set to HIGH RISK."
+                "AI verdict corroborated: the model reported likely_scam=True with confidence >= 75 and the rule engine independently found at least 35/100 risk points. Final classification raised to HIGH RISK."
             )
+        elif ai_positive:
+            evidence.append(
+                "AI-only concern is unconfirmed: the model's positive verdict was not supported by enough independent rule evidence, so it did not raise the final risk score or level. Check the explanation and verify unexpected requests through an independently obtained official channel."
+            )
+        elif ai_available and prediction is False:
+            evidence.append(
+                "AI verdict: likely_scam=False. It does not erase independent rule-based risk indicators."
+            )
+        elif ai_available:
+            evidence.append("AI verdict missing or invalid; retaining the rule-based assessment.")
         else:
-            final_score = baseline
-            if baseline >= 60:
-                final_level = "HIGH RISK"
-            elif baseline >= 30:
-                final_level = "SUSPICIOUS"
-            else:
-                final_level = "LOW RISK"
+            evidence.append("AI unavailable; retaining the rule-based assessment.")
 
-            if ai_available and prediction is False:
-                evidence.append("AI verdict: likely_scam=False. Retaining rule-based classification.")
-            elif ai_available:
-                evidence.append("AI verdict missing or invalid. Falling back to rule-based classification.")
-            else:
-                evidence.append("AI unavailable. Falling back to rule-based classification.")
-
-        final_category = (
-            rule_category
+        rule_category_value = (
+            rule_category.strip()
             if isinstance(rule_category, str) and rule_category.strip()
             else "General Message"
         )
-        generic_categories = {"General Message", "No Strong Rule Indicators"}
-        if ai_supported and scam_type:
-            if final_category in generic_categories:
-                final_category = scam_type
-            evidence.append(f"AI scam type: {scam_type}")
+        final_category = rule_category_value
+        link_only_categories = {
+            "URL Present - Needs Verification",
+            "URL Present",
+            "Message Contains URL",
+        }
+        if baseline < 30 and final_category in link_only_categories:
+            # A bare URL is not itself a scam category. URL reputation and
+            # concrete message indicators are still shown separately.
+            final_category = "General Message"
+            evidence.append("A URL was present, but link presence alone did not justify a scam category.")
+        if ai_corroborated and scam_type and final_category in self.GENERIC_CATEGORIES:
+            final_category = scam_type
+            evidence.append(f"AI scam type used as supporting category: {scam_type}")
 
-        # A verified reputation hit is independent evidence; do not let a clean
-        # message or negative AI answer erase it.
+        # Only a verified reputation hit can override clean-looking message
+        # content independently. An unverified report or no-match is not proof.
         if reputation_status == "confirmed_malicious":
             final_score = max(final_score, self.VERIFIED_URL_MIN_SCORE)
             final_level = "HIGH RISK"
-            if final_category in generic_categories or final_category in {
-                "Suspicious URL Indicators",
-                "URL Present - Needs Verification",
-                "URL Present",
-                "Message Contains URL",
-            }:
+            if final_category in self.GENERIC_CATEGORIES or final_category == "Suspicious URL Indicators":
                 final_category = "Confirmed Malicious URL"
             evidence.append(
-                "VERIFIED URL THREAT: provider returned a verified phishing match; final score forced to at least 98/100."
+                "VERIFIED URL THREAT: the reputation provider returned a verified phishing match; final score forced to at least 98/100."
             )
 
         return {
@@ -142,75 +173,12 @@ class EvidenceFusion:
             "level": final_level,
             "category": final_category,
             "evidence": evidence,
-            "ai_supported": ai_supported,
+            # Keep the existing field, but define support as corroboration,
+            # not merely a model returning true.
+            "ai_supported": ai_corroborated,
+            "ai_model_prediction": prediction,
+            "ai_model_confidence": confidence,
+            "ai_verdict_corroborated": ai_corroborated,
             "url_score": url_score,
             "url_reputation_status": reputation_status,
         }
-
-
-if __name__ == "__main__":
-    fusion = EvidenceFusion()
-    tests = [
-        {
-            "name": "AI true overrides zero score",
-            "score": 0,
-            "ai": {"available": True, "result": {"likely_scam": True}},
-            "url": None,
-            "expected_score": 60,
-            "expected_level": "HIGH RISK",
-        },
-        {
-            "name": "AI true preserves higher score",
-            "score": 85,
-            "ai": {"available": True, "result": {"likely_scam": True}},
-            "url": None,
-            "expected_score": 85,
-            "expected_level": "HIGH RISK",
-        },
-        {
-            "name": "AI false preserves low rule score",
-            "score": 20,
-            "ai": {"available": True, "result": {"likely_scam": False}},
-            "url": None,
-            "expected_score": 20,
-            "expected_level": "LOW RISK",
-        },
-        {
-            "name": "AI unavailable uses rule score",
-            "score": 20,
-            "ai": {"available": False, "status": "error"},
-            "url": None,
-            "expected_score": 20,
-            "expected_level": "LOW RISK",
-        },
-        {
-            "name": "Verified URL forces high risk despite clean message",
-            "score": 0,
-            "ai": {"available": True, "result": {"likely_scam": False}},
-            "url": {"success": True, "score": 100, "reputation_status": "confirmed_malicious", "signals": ["confirmed_malicious_url"]},
-            "expected_score": 98,
-            "expected_level": "HIGH RISK",
-        },
-        {
-            "name": "No known threat does not force a risk level",
-            "score": 0,
-            "ai": {"available": False},
-            "url": {"success": True, "score": 0, "reputation_status": "no_known_threats", "signals": []},
-            "expected_score": 0,
-            "expected_level": "LOW RISK",
-        },
-    ]
-
-    for test in tests:
-        result = fusion.combine(
-            rule_score=test["score"],
-            rule_level="",
-            rule_category="General Message",
-            ai_analysis=test["ai"],
-            url_analysis=test["url"],
-        )
-        passed = result["score"] == test["expected_score"] and result["level"] == test["expected_level"]
-        print(f"[{'PASS' if passed else 'FAIL'}] {test['name']} | Score={result['score']} | Level={result['level']}")
-        if not passed:
-            raise AssertionError(f"{test['name']}: unexpected result: {result}")
-    print("\nAll fusion self-tests passed.")

@@ -167,6 +167,37 @@ class ScamAnalyzer:
             url_analysis=url_result,
         )
 
+        # UNCORROBORATED_AI_DISPLAY_CALIBRATION
+        # If the model alone raises an alarm but the final evidence fusion did not
+        # corroborate it, make the displayed explanation/action appropriately
+        # cautious instead of exposing an alarmist AI-only recommendation.
+        if (
+            not fusion_result.get("ai_verdict_corroborated", False)
+            and fusion_result.get("level") != "HIGH RISK"
+            and isinstance(ai_result, dict)
+            and ai_result.get("available") is True
+        ):
+            model_result = ai_result.get("result")
+            if isinstance(model_result, dict) and model_result.get("likely_scam") is True:
+                model_result = dict(model_result)
+                prior_explanation = model_result.get("explanation", "")
+                model_result["review_status"] = "uncorroborated_ai_concern"
+                model_result["advisory_only"] = True
+                model_result["explanation"] = (
+                    "The AI model raised a concern, but the independent rule and URL checks "
+                    "did not find enough evidence to confirm a scam. Treat this as an "
+                    "unconfirmed AI concern, not a confirmed scam. "
+                    + (prior_explanation if isinstance(prior_explanation, str) else "")
+                ).strip()
+                model_result["recommended_action"] = (
+                    "Do not treat this result alone as proof of fraud. If the message was "
+                    "unexpected, verify it using the brand's official app or website reached "
+                    "independently, rather than the message link. Never share an OTP, PIN, "
+                    "or password with a sender."
+                )
+                ai_result = dict(ai_result)
+                ai_result["result"] = model_result
+
         # Preserve the existing public response structure.
 
         return {
@@ -242,6 +273,13 @@ ASSESSMENT PRINCIPLES:
 
 8. Do not force a scam verdict from several weak signals.
    Do not dismiss clear evidence of a suspicious request.
+
+LINK FALSE-POSITIVE CALIBRATION:
+- Do not classify a message as a scam merely because it contains a link, a shortened/tracking link, a feedback-survey link, a branded shop link, a parcel-tracking link, or an unfamiliar hostname.
+- Routine network-experience surveys, customer-feedback requests, order updates, shipping notifications, product links, and delivery-status messages can be legitimate when they do not request payment, credentials, OTPs, PINs, or unusually sensitive information.
+- A URL that is not found in a threat database is not guaranteed safe, but an unavailable or unknown reputation result is also not evidence that it is malicious.
+- Distinguish brand mention, brand-owned domain, and brand impersonation. Do not claim impersonation from a familiar brand name alone; look for a deceptive hostname plus concrete suspicious message behaviour.
+- Set likely_scam=true only when the message provides substantive evidence of deceptive intent. If evidence is weak or ambiguous, return likely_scam=false and explain the uncertainty rather than guessing.
 
 OTP NOTIFICATION RULE:
 A message that merely provides a login OTP and warns the
