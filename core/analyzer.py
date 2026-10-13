@@ -40,7 +40,7 @@ def _read_ai_timeout() -> float:
         ))
     except (TypeError, ValueError):
         value = 12.0
-    return max(4.0, min(value, 30.0))
+    return max(4.0, min(value, 60.0))
 
 
 URL_PATTERN = re.compile(
