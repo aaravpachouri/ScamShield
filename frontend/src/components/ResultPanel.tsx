@@ -150,7 +150,7 @@ export default function ResultPanel({ response, onCopy }: Props) {
         <div className="ai-summary-copy">
           <b>Semantic analysis</b>
           <span>
-            {aiReturned
+            {aiReturned && aiResult
               ? `${aiResult.scam_type ?? 'Assessment returned'} · ${aiResult.manipulation_tactics?.join(' / ') || 'No tactics listed'}`
               : 'Unavailable for this request. Rule-based evidence is shown where available.'}
           </span>
