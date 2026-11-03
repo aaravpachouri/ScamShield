@@ -150,6 +150,8 @@ When testing changes, include both:
 - A public deployment should use HTTPS, narrowly configured CORS, request limits, and abuse protections.
 - Do not rely on a single score to decide whether a payment or disclosure is safe.
 
+**If a message claims to be from a bank, government agency, delivery service, or another organisation, verify it using the official app, website, or phone number you find independently—not the contact details in the suspicious message.**
+
 ## ⚠️ Known limitations
 
 - False positives and false negatives are possible.
@@ -158,8 +160,6 @@ When testing changes, include both:
 - Scores are not calibrated probabilities unless separately validated.
 - A successful health check confirms API responsiveness, not necessarily that every analysis provider or optional feature is available.
 - Model quotas, free-host availability, and OCR support depend on deployment configuration.
-
-**If a message claims to be from a bank, government agency, delivery service, or another organisation, verify it using the official app, website, or phone number you find independently—not the contact details in the suspicious message.**
 
 ## 🗺️ Roadmap
 
@@ -171,7 +171,7 @@ When testing changes, include both:
 
 ## 📄 License
 
-A license has not yet been specified. Until a `LICENSE` file is added, do not assume this repository grants permission to reuse or redistribute the code.
+ScamShield is licensed under the [MIT License](LICENSE). You may use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, subject to the license's conditions. See the [LICENSE](LICENSE) file for the full terms.
 
 ---
 
